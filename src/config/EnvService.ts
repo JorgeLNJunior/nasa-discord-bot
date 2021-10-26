@@ -3,6 +3,7 @@ dotenv.config();
 
 export class EnvService {
   get<T>(key: string): T {
-    return process.env[key] as unknown as T;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return process.env[key] as any as T;
   }
 }
