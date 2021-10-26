@@ -40,6 +40,6 @@
     "dotenv": "^10.0.0"
   },
   "lint-staged": {
-    "*.js": "eslint --fix"
+    "*.{js,ts}": "eslint --fix"
   }
 }
