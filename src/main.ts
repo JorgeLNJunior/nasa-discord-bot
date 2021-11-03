@@ -1,6 +1,7 @@
 import { REST } from '@discordjs/rest';
 import { Client, Intents } from 'discord.js';
 
+import { commands } from './commands';
 import { CommandDeployer } from './commands/CommandDeployer';
 import { EnvService } from './config/EnvService';
 
@@ -12,17 +13,17 @@ class AppStarter {
   ) {}
 
   async run() {
+    this.client.commands = commands;
     await this.commandDeployer.deploy();
 
     this.client.once('ready', () => console.log('Ready'));
+
     this.client.on('interactionCreate', async (interaction) => {
       if (!interaction.isCommand()) return;
 
-      const { commandName } = interaction;
+      const command = this.client.commands.get(interaction.commandName);
 
-      if (commandName === 'ping') {
-        await interaction.reply('Pong!');
-      }
+      command.execute(interaction);
     });
 
     this.client.login(this.envService.get<string>('BOT_TOKEN'));
