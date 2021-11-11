@@ -12,7 +12,10 @@
     "build": "tsc",
     "start": "node .",
     "start:dev": "tsnd --respawn --transpile-only src/main.ts --ignore dist",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "release:major": "changelog -M && git add CHANGELOG.md && git commit -m 'chore: atualizar o CHANGELOG.md' && npm version major -m \"docs: atualizar para %s\" && git push --tags",
+    "release:minor": "changelog -m && git add CHANGELOG.md && git commit -m 'chore: atualizar o CHANGELOG.md' && npm version minor -m \"docs: atualizar para %s\" && git push --tags",
+    "release:patch": "changelog -p && git add CHANGELOG.md && git commit -m 'chore: atualizar o CHANGELOG.md' && npm version patch -m \"docs: atualizar para %s\" && git push --tags"
   },
   "keywords": [],
   "author": "JorgeLNJunior",
@@ -25,6 +28,7 @@
     "@typescript-eslint/parser": "^5.1.0",
     "eslint": "^8.1.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
+    "generate-changelog": "^1.8.0",
     "husky": "^7.0.4",
     "jest": "^27.3.1",
     "lint-staged": "^11.2.5",
