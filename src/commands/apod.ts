@@ -13,12 +13,14 @@ export const apodCommand = {
   async execute(interaction: Interaction) {
     if (!interaction.isCommand()) return;
 
+    interaction.deferReply();
+
     const api = container.resolve(ApodApi);
 
     const apod = await api.find();
     if (apod.media_type === 'video') apod.url = UrlHelper.parseVideoUrl(apod.url);
 
-    await interaction.reply(
+    await interaction.editReply(
       `**APOD** ${apod.date}\n` +
       `**Title**: ${apod.title}\n` +
       `**Explanation**: ${apod.explanation}\n` +
