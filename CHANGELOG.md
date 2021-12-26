@@ -1,3 +1,20 @@
+#### 0.1.1 (2021-12-26)
+
+##### Build System / Dependencies
+
+*  usar o deferReply no comando apod (b0339d15)
+* **tsyringe:**  injetar dependências automaticamente (1de4e7f2)
+* **deps:**  atualizar algumas dependências (94ecaf0e)
+
+##### Bug Fixes
+
+*  corrigir as chamadas de api (d438d28d)
+
+##### Tests
+
+*  corrigir o teste de api (87c6cf49)
+*  corrigir parâmetros de construtor (ee630c45)
+
 ### 0.1.0 (2021-11-11)
 
 ##### Build System / Dependencies
