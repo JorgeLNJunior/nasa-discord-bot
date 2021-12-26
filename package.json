@@ -1,6 +1,6 @@
 {
   "name": "nasa-apod-bot",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A NASA APOD (Astronomy Picture of the Day) discord bot",
   "main": "dist/main.js",
   "engines": {
