@@ -1,3 +1,5 @@
+import 'reflect-metadata';
+
 import axios, { AxiosInstance } from 'axios';
 
 import { ApodApi } from '../../src/api/apod.api';
