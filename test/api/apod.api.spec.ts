@@ -12,7 +12,7 @@ describe('ApodApi', () => {
   beforeEach(() => {
     axiosInstance = axios.create();
     envService = new EnvService();
-    apodApi = new ApodApi(envService, axiosInstance);
+    apodApi = new ApodApi(axiosInstance, envService);
   });
 
   test('should return a APOD', async () => {
