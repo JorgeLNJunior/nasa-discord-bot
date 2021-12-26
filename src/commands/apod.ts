@@ -1,9 +1,8 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
-import axios from 'axios';
 import { Interaction } from 'discord.js';
+import { container } from 'tsyringe';
 
 import { ApodApi } from '../api/apod.api';
-import { EnvService } from '../config/EnvService';
 import { UrlHelper } from '../helpers/url.helper';
 
 
@@ -14,7 +13,9 @@ export const apodCommand = {
   async execute(interaction: Interaction) {
     if (!interaction.isCommand()) return;
 
-    const apod = await new ApodApi(new EnvService(), axios.create()).find();
+    const api = container.resolve(ApodApi);
+
+    const apod = await api.find();
     if (apod.media_type === 'video') apod.url = UrlHelper.parseVideoUrl(apod.url);
 
     await interaction.reply(

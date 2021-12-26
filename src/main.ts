@@ -1,10 +1,14 @@
-import { REST } from '@discordjs/rest';
-import { Client, Intents } from 'discord.js';
+import 'reflect-metadata';
+import './container';
+
+import { Client } from 'discord.js';
+import { container, injectable } from 'tsyringe';
 
 import { commands } from './commands';
 import { CommandDeployer } from './commands/CommandDeployer';
 import { EnvService } from './config/EnvService';
 
+@injectable()
 class AppStarter {
   constructor(
     private client: Client,
@@ -30,8 +34,5 @@ class AppStarter {
   }
 }
 
-new AppStarter(
-  new Client({ intents: Intents.FLAGS.GUILDS }),
-  new CommandDeployer(new REST({ version: '9' }), new EnvService()),
-  new EnvService(),
-).run();
+const app = container.resolve(AppStarter);
+app.run();
